@@ -25,7 +25,7 @@ RUN set -eux; \
 # Setup the Task Runner Launcher
 ARG TARGETPLATFORM
 ARG LAUNCHER_VERSION=1.1.1
-COPY n8n-task-runners.json /n8n-task-runners.json
+COPY n8n-task-runners.json /etc/n8n-task-runners.json
 # Download, verify, then extract the launcher binary
 RUN \
 	if [[ "$TARGETPLATFORM" = "linux/amd64" ]]; then export ARCH_NAME="amd64"; \
@@ -41,7 +41,7 @@ RUN \
 	cd - && \
 	rm -r /launcher-temp
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /
 
 RUN \
 	mkdir .n8n && \
